@@ -9,7 +9,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Images\reload-icon.png" />
+    <None Remove="Assets\Images\Roblox-icon.png" />
+    <None Remove="Assets\Images\Roblox-icon.svg" />
+    <None Remove="Assets\Images\search-icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\reload-icon.png" />
+    <Resource Include="Assets\Images\Roblox-icon.png" />
+    <Resource Include="Assets\Images\search-icon.png" />
   </ItemGroup>
 
 </Project>

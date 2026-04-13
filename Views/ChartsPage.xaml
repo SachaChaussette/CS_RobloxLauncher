@@ -5,14 +5,84 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CS_RobloxLauncher.ViewModels"
         mc:Ignorable="d"
-        Title="ChartsPage" Height="450" Width="800">
+        Title="ChartsPage" Height="1080" Width="1920">
 
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#131313"/>
+            <Setter Property="BorderBrush" Value="#131313"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="5.0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#131313"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="#131313"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
+    
     <Page.DataContext>
         <local:ChartsPageViewModel/>
     </Page.DataContext>
 
-    <Grid>
-        <ListView ItemsSource="{Binding AllGames}">
+    <Grid Background="#ffffff">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".13*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#f7f7f8" >
+            <Grid Margin="10,5,10,5">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width=".6*"/>
+                    <ColumnDefinition Width=".6*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" Source="/Assets/Images/Roblox-icon.png"/>
+                <Button Grid.Column="1" Content="Charts"/>
+                <Button Grid.Column="2" Content="Marketplace"/>
+                <Button Grid.Column="3" Content="Créer"/>
+                <Button Grid.Column="4" Content="Robux"/>
+
+                <Border Grid.Column="5" CornerRadius="10" Background="#edeef1" BorderThickness="0.1" BorderBrush="#131313">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".1*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Column="0" Source="/Assets/Images/search-icon.png"/>
+                        <TextBox Background="Transparent" BorderThickness="0" Grid.Column="1" Text="Rechercher"/>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Column="7" Background="#335fff" CornerRadius="10" Margin="0,0,2,0">
+                    <Button Content="S'inscrire" Foreground="White"/>
+                </Border>
+                <Border Grid.Column="8" BorderThickness="1" BorderBrush="Black"  Margin="2,0,0,0" CornerRadius="10">
+                    <Button Content="Connexion"/>
+                </Border>
+            </Grid>
+        </Border>
+        
+        <!--<ListView ItemsSource="{Binding AllGames}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="5">
@@ -25,6 +95,6 @@
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>
+        </ListView>-->
     </Grid>
 </Page>
