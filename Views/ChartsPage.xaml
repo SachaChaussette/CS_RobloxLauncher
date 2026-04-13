@@ -1,0 +1,25 @@
+﻿<Page x:Class="CS_RobloxLauncher.Views.ChartsPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CS_RobloxLauncher.Views"
+        mc:Ignorable="d"
+        Title="ChartsPage" Height="450" Width="800">
+    <Grid>
+        <ListView ItemsSource="{Binding AllGames}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Image Source="{Binding Thumbnail}" Width="60" Height="60"/>
+                        <StackPanel Margin="10,0">
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Players, StringFormat='👥 {0} joueurs'}"/>
+                            <TextBlock Text="{Binding PlaceId}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

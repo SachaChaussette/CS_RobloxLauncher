@@ -11,6 +11,6 @@ namespace CS_RobloxLauncher.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
-       
+
     }
 }
