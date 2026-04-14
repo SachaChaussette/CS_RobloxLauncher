@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CS_RobloxLauncher.ViewModels
@@ -71,5 +72,37 @@ namespace CS_RobloxLauncher.ViewModels
         {
             OnExitGame?.Invoke();
         }
+
+        private bool _isOptionsOpen;
+
+        public bool IsOptionsOpen
+        {
+            get => _isOptionsOpen;
+            set
+            {
+                _isOptionsOpen = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand ToggleOptionsCommand => new RelayCommand(_c =>
+        {
+            IsOptionsOpen = !IsOptionsOpen;
+        });
+
+        public ICommand InviteFriendsCommand => new RelayCommand(_c =>
+        {
+            MessageBox.Show("Tu n'as pas d'ami...");
+        });
+
+        public ICommand CopyLinkCommand => new RelayCommand(_c =>
+        {
+            MessageBox.Show("Lien copié dans la corbeille.");
+        });
+
+        public ICommand ReportCommand => new RelayCommand(_c =>
+        {
+            MessageBox.Show("Tu t'es Report avec succee!");
+        });
     }
 }
