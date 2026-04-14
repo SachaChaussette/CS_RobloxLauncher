@@ -17,15 +17,15 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="bd"
-                            Background="{TemplateBinding Background}">
+                                Background="{TemplateBinding Background}">
                             <ContentPresenter/>
                         </Border>
 
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="bd"
-                                    Property="Background"
-                                    Value="#E6E7EA"/>
+                                        Property="Background"
+                                        Value="#E6E7EA"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
 
@@ -41,7 +41,7 @@
 
         <Grid>
             <Image Source="{Binding SelectedGame.Thumbnail}"
-           Stretch="Fill"/>
+                   Stretch="Fill"/>
 
             <Grid Margin="0,150,0,0">
                 <Grid.Background>
@@ -80,7 +80,7 @@
 
             <StackPanel Grid.Column="1"
                         VerticalAlignment="Center"
-                         Margin="30">
+                        Margin="30">
 
                 <TextBlock Text="{Binding SelectedGame.Name}"
                            FontSize="26"
@@ -185,34 +185,34 @@
         </Grid>
         
         <Button Width="40"
-            Height="40"
-            Margin="15"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#CCFFFFFF"
-            BorderThickness="0"
-            Cursor="Hand"
-            Command="{Binding OnExitCommand}">
+                Height="40"
+                Margin="15"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="#CCFFFFFF"
+                BorderThickness="0"
+                Cursor="Hand"
+                Command="{Binding OnExitCommand}">
 
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
-                        CornerRadius="10">
+                            CornerRadius="10">
                         <TextBlock Text="✕"
-                            FontSize="16"
-                            Foreground="Black"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"/>
+                                   FontSize="16"
+                                   Foreground="Black"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
             </Button.Template>
         </Button>
 
         <Popup IsOpen="{Binding IsOptionsOpen}"
-           Placement="Bottom"
-           PlacementTarget="{Binding ElementName=OptionsButton}"
-           StaysOpen="False"
-           AllowsTransparency="True">
+               Placement="Bottom"
+               PlacementTarget="{Binding ElementName=OptionsButton}"
+               StaysOpen="False"
+               AllowsTransparency="True">
 
             <Border Background="#F7F7F8"
                     Width="200">
@@ -220,16 +220,16 @@
                 <StackPanel>
 
                     <Button Content="Invite Friends"
-                        Command="{Binding InviteFriendsCommand}"
-                        Style="{StaticResource MenuButtonStyle}"></Button>
+                            Command="{Binding InviteFriendsCommand}"
+                            Style="{StaticResource MenuButtonStyle}"></Button>
 
                     <Button Content="Copy Link"
-                        Command="{Binding CopyLinkCommand}"
-                        Style="{StaticResource MenuButtonStyle}"/>
+                            Command="{Binding CopyLinkCommand}"
+                            Style="{StaticResource MenuButtonStyle}"/>
 
                     <Button Content="Report"
-                        Command="{Binding ReportCommand}"
-                        Style="{StaticResource MenuButtonStyle}"/>
+                            Command="{Binding ReportCommand}"
+                            Style="{StaticResource MenuButtonStyle}"/>
 
                 </StackPanel>
 
