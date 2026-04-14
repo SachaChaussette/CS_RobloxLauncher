@@ -18,7 +18,7 @@ namespace CS_RobloxLauncher.Views
     /// <summary>
     /// Interaction logic for GameWindow.xaml
     /// </summary>
-    public partial class GameWindow : Window
+    public partial class GameWindow : Page
     {
         GameViewModel vm = null;
         public GameWindow()

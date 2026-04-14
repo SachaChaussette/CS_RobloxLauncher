@@ -1,9 +1,13 @@
-﻿<Window x:Class="CS_RobloxLauncher.Views.GameWindow"
+﻿<Page x:Class="CS_RobloxLauncher.Views.GameWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:CS_RobloxLauncher.ViewModels"
         Title="Launcher" Height="500" Width="900"
         Background="#121212">
+
+    <!--<Page.DataContext>
+        <local:GameViewModel/>
+    </Page.DataContext>-->
 
     <Grid>
         <Border Background="#1E1E1E"
@@ -147,4 +151,4 @@
             </Grid>
         </Border>
     </Grid>
-</Window>
+</Page>
