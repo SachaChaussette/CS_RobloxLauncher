@@ -32,8 +32,18 @@ namespace CS_RobloxLauncher.Views
 
             DataContext = vm;
 
-            MainWindowFrame.Navigate(new ChartsPage());
-            //MainWindowFrame.Navigate(new GameWindow());
+            NavigateToChartsPage();
         }
+
+        public void NavigateToChartsPage()
+        {
+            MainWindowFrame.Navigate(vm.ChartsPage);
+        }
+
+        public void NavigateToGamePage()
+        {
+            MainWindowFrame.Navigate(new GameWindow());
+        }
+
     }
 }

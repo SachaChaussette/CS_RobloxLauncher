@@ -29,9 +29,9 @@
         </Style>
     </Page.Resources>
     
-    <Page.DataContext>
+    <!--<Page.DataContext>
         <local:ChartsPageViewModel/>
-    </Page.DataContext>
+    </Page.DataContext>-->
 
     <Grid Background="#ffffff">
         
@@ -107,7 +107,8 @@
                 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button >
+                            <Button Command="{Binding DataContext.SelectGame, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}">
                                 <StackPanel Orientation="Vertical">
                                     <Border CornerRadius="10" Height="140" Width="140">
                                         <Border.Background>

@@ -13,40 +13,34 @@ namespace CS_RobloxLauncher.ViewModels
 {
     public class GameViewModel : ViewModelBase
     {
-        private Game selectedGame;
+        public Game SelectedGame => GameManager.Instance.SelectedGame;
 
-        public Game SelectedGame
-        {
-            get => selectedGame;
-            set
-            {
-                selectedGame = value;
-                OnPropertyChanged();
-            }
-        }
+        public Action OnExitGame { get; set; } = null;
 
         public ICommand PlayCommand { get; }
+        public ICommand OnExitCommand { get; }
 
         public GameViewModel()
         {
-            SelectedGame = GameManager.Instance.SelectedGame;
+            //SelectedGame = GameManager.Instance.SelectedGame;
 
             PlayCommand = new RelayCommand(PlayGame);
+            OnExitCommand = new RelayCommand(OnExit);
         }
         public GameViewModel(string _name, string _thumbnail, string _id)
         {
-            SelectedGame = new Game
-            {
-                Name = _name,
-                Thumbnail = _thumbnail,
-                PlaceId = _id
-            };
+            //SelectedGame = new Game
+            //{
+            //    Name = _name,
+            //    Thumbnail = _thumbnail,
+            //    PlaceId = _id
+            //};
 
             PlayCommand = new RelayCommand(PlayGame);
         }
         public GameViewModel(Game _game)
         {
-            SelectedGame = _game;
+            //SelectedGame = _game;
 
             PlayCommand = new RelayCommand(PlayGame);
         }
@@ -71,6 +65,11 @@ namespace CS_RobloxLauncher.ViewModels
                     UseShellExecute = true
                 });
             }
+        }
+
+        void OnExit(object? _obj)
+        {
+            OnExitGame?.Invoke();
         }
     }
 }

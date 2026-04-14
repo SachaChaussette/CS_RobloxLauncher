@@ -1,4 +1,5 @@
 ﻿using CS_RobloxLauncher.Models;
+using CS_RobloxLauncher.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,18 +8,23 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CS_RobloxLauncher.ViewModels
 {
     public class ChartsPageViewModel : ViewModelBase
     {
+        public Action OnSelectGame { get; set; } = null;
+
+        public ICommand SelectGame { get; set; }
+
         public ObservableCollection<Game> AllGames { get; set; } = new ObservableCollection<Game>();
 
         public ChartsPageViewModel()
         {
             LoadGamesAsync();
 
-           
+            SelectGame = new RelayCommand(OnSelectGameMethod);
         }
 
         private async Task LoadGamesAsync()
@@ -43,6 +49,15 @@ namespace CS_RobloxLauncher.ViewModels
 
                 AllGames.Add(_game);
             }
+        }
+
+        void OnSelectGameMethod(object sender)
+        {
+            Game _game = (Game)sender;
+
+            GameManager.Instance.SelectedGame = _game;
+
+            OnSelectGame?.Invoke();
         }
     }
 }

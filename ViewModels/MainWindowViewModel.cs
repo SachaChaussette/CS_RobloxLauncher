@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CS_RobloxLauncher.Views;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -11,6 +12,12 @@ namespace CS_RobloxLauncher.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
+        public ChartsPage ChartsPage { get; set; } = null;
 
+        public MainWindowViewModel()
+        {
+            ChartsPage = new ChartsPage();
+        }
+        
     }
 }

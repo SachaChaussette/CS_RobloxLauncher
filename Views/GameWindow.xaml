@@ -133,7 +133,8 @@
             VerticalAlignment="Top"
             Background="#CCFFFFFF"
             BorderThickness="0"
-            Cursor="Hand">
+            Cursor="Hand"
+            Command="{Binding OnExitCommand}">
 
             <Button.Template>
                 <ControlTemplate TargetType="Button">

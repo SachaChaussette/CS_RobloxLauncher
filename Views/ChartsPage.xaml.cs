@@ -29,6 +29,13 @@ namespace CS_RobloxLauncher.Views
             vm = new ChartsPageViewModel();
 
             DataContext = vm;
+
+            Loaded += OnLoaded;
+        }
+
+        void OnLoaded(object? sender, RoutedEventArgs e)
+        {
+            vm.OnSelectGame += ((MainWindow)Window.GetWindow(this)).NavigateToGamePage;
         }
     }
 }
