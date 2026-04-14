@@ -32,11 +32,14 @@ namespace CS_RobloxLauncher.ViewModels
 
                 Game _game = new Game
                 {
-                    PlaceId = _placeId,
-                    Name = _values[0].ToString(),
-                    Players = int.Parse(_values[1].ToString()),
-                    Thumbnail = _values[2].ToString()
+                    PlaceId     = _placeId,
+                    Name        = _values[0].ToString(),
+                    Players     = int.Parse(_values[1].ToString()),
+                    Thumbnail   = _values[2].ToString()
                 };
+
+                // TODO SUP
+                //if (AllGames.Count > 100) return;
 
                 AllGames.Add(_game);
             }
