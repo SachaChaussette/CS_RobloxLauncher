@@ -8,7 +8,7 @@
 
         <Grid>
             <Image Source="{Binding SelectedGame.Thumbnail}"
-           Stretch="UniformToFill"/>
+           Stretch="Fill"/>
 
             <Grid Margin="0,150,0,0">
                 <Grid.Background>
@@ -71,7 +71,7 @@
 
                 <StackPanel Orientation="Horizontal">
 
-                    <Button Width="160"
+                    <Button Width="200"
                             Height="45"
                             Command="{Binding PlayCommand}"
                             Cursor="Hand">
@@ -87,16 +87,11 @@
                                         <ControlTemplate TargetType="Button">
                                             <Border Background="{TemplateBinding Background}"
                                                     CornerRadius="10">
-                                                <StackPanel Orientation="Horizontal"
-                                                            HorizontalAlignment="Center"
-                                                            VerticalAlignment="Center">
-                                                    <TextBlock Text="▶"
-                                                               FontSize="16"
-                                                               Margin="0,0,8,0"/>
-                                                    <TextBlock Text="Play"
-                                                               FontSize="16"
-                                                               FontWeight="SemiBold"/>
-                                                </StackPanel>
+                                                <TextBlock Text=" ▶"
+                                                           FontSize="35"
+                                                           Margin="0,0,8,0"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
                                             </Border>
                                         </ControlTemplate>
                                     </Setter.Value>
@@ -123,11 +118,36 @@
                             Foreground="White"
                             Cursor="Hand"
                             Content="⋯"
-                            FontSize="20"/>
+                            FontSize="20"
+                            HorizontalAlignment="Right"/>
                 </StackPanel>
 
             </StackPanel>
+            
         </Grid>
+        
+        <Button Width="40"
+            Height="40"
+            Margin="15"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#CCFFFFFF"
+            BorderThickness="0"
+            Cursor="Hand">
+
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                        CornerRadius="10">
+                        <TextBlock Text="✕"
+                            FontSize="16"
+                            Foreground="Black"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 
     </Grid>
 </Page>
