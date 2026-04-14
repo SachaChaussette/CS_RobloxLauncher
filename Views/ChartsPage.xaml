@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CS_RobloxLauncher.ViewModels"
-        mc:Ignorable="d"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d"
         Title="ChartsPage" Height="1080" Width="1920">
 
     <Page.Resources>
@@ -22,19 +23,39 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
-        <Style TargetType="TextBox">
+        <Style TargetType="ToggleButton">
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#131313"/>
+            <Setter Property="BorderBrush" Value="#131313"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="5.0"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
         </Style>
+
+        <DataTemplate x:Key="FilterTemplate">
+            <ToggleButton>
+                <DockPanel>
+                    <WrapPanel DockPanel.Dock="Left">
+                        <TextBlock FontSize="15" Text="{Binding Text}" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                    <CheckBox  DockPanel.Dock="Right" IsChecked="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=ToggleButton}}"/>
+                </DockPanel>
+            </ToggleButton>
+        </DataTemplate>
+
     </Page.Resources>
-    
+
+
+
+
     <!--<Page.DataContext>
         <local:ChartsPageViewModel/>
     </Page.DataContext>-->
 
     <Grid Background="#ffffff">
-        
+
+     
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="2*"/>
@@ -43,6 +64,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
+
 
         <Border Grid.Row="0" Background="#f7f7f8" >
             <Grid Margin="20,5,20,5">
@@ -60,10 +82,10 @@
                 </Grid.ColumnDefinitions>
 
                 <Image Grid.Column="0" Source="/Assets/Images/Roblox-icon.png"/>
-                <Button Grid.Column="1" Content="Charts"/>
-                <Button Grid.Column="2" Content="Marketplace"/>
-                <Button Grid.Column="3" Content="Créer"/>
-                <Button Grid.Column="4" Content="Robux"/>
+                <Button Grid.Column="1" Content="Charts" Command="{Binding HideErrorCommand}"/>
+                <Button Grid.Column="2" Content="Marketplace" Command="{Binding ShowErrorCommand}"/>
+                <Button Grid.Column="3" Content="Créer" Command="{Binding ShowErrorCommand}"/>
+                <Button Grid.Column="4" Content="Robux" Command="{Binding ShowErrorCommand}"/>
 
                 <Border Grid.Column="5" CornerRadius="10" Background="#edeef1" BorderThickness="0.1" BorderBrush="#131313">
                     <Grid>
@@ -78,33 +100,126 @@
                 </Border>
 
                 <Border Grid.Column="7" Background="#335fff" CornerRadius="10" Margin="0,0,2,0">
-                    <Button Content="S'inscrire" Foreground="White"/>
+                    <Button Content="S'inscrire" Foreground="White" Command="{Binding ShowErrorCommand}"/>
                 </Border>
                 <Border Grid.Column="8" BorderThickness="1" BorderBrush="Black"  Margin="2,0,0,0" CornerRadius="10">
-                    <Button Content="Connexion"/>
+                    <Button Content="Connexion" Command="{Binding ShowErrorCommand}"/>
                 </Border>
             </Grid>
         </Border>
 
         <TextBlock Grid.Row="1" Text="Charts" FontSize="40" FontWeight="Bold" Margin="15,0,0,10" VerticalAlignment="Bottom"/>
-        
+
         <TextBlock Grid.Row="2" Text="Populaire sur :" FontSize="15" Margin="15,0,0,0" VerticalAlignment="Bottom"/>
-        
+
+        <Grid Grid.Row="3">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" CornerRadius="20" Background="#f7f7f8" Margin="20,0,10,0">
+                <ToggleButton Name="ToggleOrdinateurButton" HorizontalAlignment="Center">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center" 
+                                       Text="Ordinateur" 
+                                       Margin="0,0,10,0"/>
+                            <Path Data="M0,0 L6,6 L12,0"
+                                  Stroke="#666666"
+                                  StrokeThickness="2"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <Popup IsOpen="{Binding IsChecked, ElementName=ToggleOrdinateurButton}">
+                            <Border BorderThickness="0.5" 
+                                    Height="600" Width="400" 
+                                    BorderBrush="Black"
+                                    Background="#f7f7f8" 
+                                    CornerRadius="10">
+                                <!--<Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="9*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <ItemsControl Grid.Column="1" ItemTemplate="{StaticResource FilterTemplate}">
+                                        <ItemsControl.Items>
+                                            <local:FilterItem Text="Tous les appareils"/>
+                                            <local:FilterItem Text="Téléphone de niveau d'entrée de gamme"/>
+                                            <local:FilterItem Text="Téléphone standard"/>
+                                            <local:FilterItem Text="Tablette de niveau d'entrée de gamme"/>
+                                            <local:FilterItem Text="Tablette standard"/>
+                                            <local:FilterItem Text="Ordinateur"/>
+                                            <local:FilterItem Text="Console"/>
+                                            <local:FilterItem Text="RV"/>
+                                        </ItemsControl.Items>
+                                    </ItemsControl>
+                                </Grid>-->
+                            </Border>
+                        </Popup>
+                    </StackPanel>
+                </ToggleButton>
+            </Border>
+
+            <Border Grid.Column="1" CornerRadius="20" Background="#f7f7f8" Margin="10,0,0,0">
+                <ToggleButton Name="ToggleLocationsButton" HorizontalAlignment="Center">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center" 
+                                       Text="Toutes les locations" 
+                                       Margin="0,0,10,0"/>
+                            <Path Data="M0,0 L6,6 L12,0"
+                                  Stroke="#666666"
+                                  StrokeThickness="2"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <Popup IsOpen="{Binding IsChecked, ElementName=ToggleLocationsButton}">
+                            <Border BorderThickness="1">
+                                <TextBlock Background="LightBlue" Foreground="Blue" Padding="30">
+
+                                </TextBlock>
+                            </Border>
+                        </Popup>
+                    </StackPanel>
+                </ToggleButton>
+            </Border>
+        </Grid>
+
         <TextBlock Grid.Row="4" Text="Le top des tendance" FontSize="20" FontWeight="SemiBold" Margin="15,0,0,0" VerticalAlignment="Bottom"/>
 
         <ScrollViewer Grid.Row="5">
-           
+
             <WrapPanel Orientation="Horizontal" 
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Top">
-                       
+
                 <ItemsControl ItemsSource="{Binding AllGames}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-                
+
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Button Command="{Binding DataContext.SelectGame, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
@@ -116,14 +231,14 @@
                                                             Stretch="UniformToFill"/>
                                         </Border.Background>
                                     </Border>
-                                    
+
                                     <Grid Margin="5,0,5,0"  Width="140" Height="90" >
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="*"/>
                                             <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
 
-                                    
+
                                         <WrapPanel Grid.Row="0" 
                                                    Margin="0,10,0,0" 
                                                    Orientation="Vertical">
@@ -131,7 +246,7 @@
                                                        FontWeight="Bold" 
                                                        TextWrapping="WrapWithOverflow"/>
                                         </WrapPanel>
-                                    
+
                                         <TextBlock Grid.Row="1" 
                                                    Text="{Binding Players, StringFormat='👤 {0} joueurs'}" 
                                                    VerticalAlignment="Bottom"
@@ -144,5 +259,12 @@
                 </ItemsControl>
             </WrapPanel>
         </ScrollViewer>
+
+        <Image Grid.Row="1"  Grid.RowSpan="6" 
+               Height="1080"
+               Width="2000"
+               Visibility="{Binding VisibilityError}" 
+               Source="/Assets/Images/799627bf-1821-4c6d-8905-6e63f4733e5c.png"/>
+
     </Grid>
 </Page>
