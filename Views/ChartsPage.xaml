@@ -36,8 +36,8 @@
     <Grid Background="#ffffff">
         
         <Grid.RowDefinitions>
-            <RowDefinition Height=".13*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25*"/>
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0" Background="#f7f7f8" >
