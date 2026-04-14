@@ -4,6 +4,39 @@
       Title="Launcher"
       Background="#0F1116">
 
+    <Page.Resources>
+
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#24262B"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd"
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd"
+                                    Property="Background"
+                                    Value="#E6E7EA"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+    </Page.Resources>
+
     <Grid>
 
         <Grid>
@@ -59,6 +92,7 @@
                         Padding="8,2"
                         Margin="0,5,0,0"
                         HorizontalAlignment="Left">
+                    
                     <TextBlock Text="Maturity: Mild"
                                Foreground="#CFCFCF"
                                FontSize="12"/>
@@ -110,16 +144,40 @@
                         </Button.Style>
                     </Button>
 
-                    <Button Width="45"
-                            Height="45"
-                            Margin="10,0,0,0"
-                            Background="#2A2D35"
-                            BorderThickness="0"
-                            Foreground="White"
-                            Cursor="Hand"
-                            Content="⋯"
-                            FontSize="20"
-                            HorizontalAlignment="Right"/>
+                    <StackPanel Orientation="Horizontal">
+
+                        <Button x:Name="OptionsButton"
+                                Width="45"
+                                Height="45"
+                                Margin="10,0,0,0"
+                                Command="{Binding ToggleOptionsCommand}"
+                                BorderThickness="0"
+                                Foreground="White"
+                                Cursor="Hand"
+                                Content="⋯"
+                                FontSize="20"
+                                HorizontalAlignment="Right">
+
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="10">
+
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="pack://application:,,,/Assets/Images/option-game-icon.png"
+                                                        Stretch="Fill"/>
+                                        </Border.Background>
+
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+
+                        </Button>
+
+                    </StackPanel>
+                    
+                    
                 </StackPanel>
 
             </StackPanel>
@@ -149,6 +207,34 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
+
+        <Popup IsOpen="{Binding IsOptionsOpen}"
+           Placement="Bottom"
+           PlacementTarget="{Binding ElementName=OptionsButton}"
+           StaysOpen="False"
+           AllowsTransparency="True">
+
+            <Border Background="#F7F7F8"
+                    Width="200">
+
+                <StackPanel>
+
+                    <Button Content="Invite Friends"
+                        Command="{Binding InviteFriendsCommand}"
+                        Style="{StaticResource MenuButtonStyle}"></Button>
+
+                    <Button Content="Copy Link"
+                        Command="{Binding CopyLinkCommand}"
+                        Style="{StaticResource MenuButtonStyle}"/>
+
+                    <Button Content="Report"
+                        Command="{Binding ReportCommand}"
+                        Style="{StaticResource MenuButtonStyle}"/>
+
+                </StackPanel>
+
+            </Border>
+        </Popup>
 
     </Grid>
 </Page>

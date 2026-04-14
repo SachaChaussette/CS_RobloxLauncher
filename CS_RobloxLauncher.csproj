@@ -9,12 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Images\799627bf-1821-4c6d-8905-6e63f4733e5c.png" />
+    <None Remove="Assets\Images\option-game-icon.png" />
     <None Remove="Assets\Images\reload-icon.png" />
     <None Remove="Assets\Images\Roblox-icon.png" />
     <None Remove="Assets\Images\Roblox-icon.svg" />
     <None Remove="Assets\Images\search-icon.png" />
-    <None Remove="Capture d%27écran 2026-04-13 212213.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,11 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\Images\799627bf-1821-4c6d-8905-6e63f4733e5c.png" />
+    <Resource Include="Assets\Images\option-game-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Images\reload-icon.png" />
     <Resource Include="Assets\Images\Roblox-icon.png" />
     <Resource Include="Assets\Images\search-icon.png" />
-    <Resource Include="Capture d'écran 2026-04-13 212213.png" />
   </ItemGroup>
 
 </Project>
