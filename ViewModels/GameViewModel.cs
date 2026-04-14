@@ -29,12 +29,7 @@ namespace CS_RobloxLauncher.ViewModels
 
         public GameViewModel()
         {
-            SelectedGame = new Game
-            {
-                Name = "Blox Fruits",
-                Thumbnail = "https://tr.rbxcdn.com/180DAY-a64f70da20fc1e80ee76fe5d49c1be0a/150/150/Image/Webp/noFilter",
-                PlaceId = "2753915549"
-            };
+            SelectedGame = GameManager.Instance.SelectedGame;
 
             PlayCommand = new RelayCommand(PlayGame);
         }
