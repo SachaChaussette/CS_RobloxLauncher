@@ -68,7 +68,7 @@
 
                                             <DoubleAnimation Storyboard.TargetName="NeonBrush"
                                                 Storyboard.TargetProperty="GradientStops[0].Offset"
-                                                From="-0.5" To="0.5"
+                                                From="-0.5" To="1"
                                                 Duration="0:0:2"/>
 
                                             <DoubleAnimation Storyboard.TargetName="NeonBrush"
@@ -78,7 +78,7 @@
 
                                             <DoubleAnimation Storyboard.TargetName="NeonBrush"
                                                 Storyboard.TargetProperty="GradientStops[2].Offset"
-                                                From="0.5" To="1.5"
+                                                From="0" To="2"
                                                 Duration="0:0:2"/>
 
                                         </Storyboard>
