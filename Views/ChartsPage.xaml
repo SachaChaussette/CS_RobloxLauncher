@@ -29,9 +29,9 @@
         </Style>
     </Page.Resources>
     
-    <!--<Page.DataContext>
+    <Page.DataContext>
         <local:ChartsPageViewModel/>
-    </Page.DataContext>-->
+    </Page.DataContext>
 
     <Grid Background="#ffffff">
         
@@ -94,7 +94,9 @@
 
         <ScrollViewer Grid.Row="5">
            
-            <WrapPanel Orientation="Horizontal" Margin="25,0,25,0" HorizontalAlignment="Center">
+            <WrapPanel Orientation="Horizontal" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Top">
                        
                 <ItemsControl ItemsSource="{Binding AllGames}">
                     <ItemsControl.ItemsPanel>
@@ -105,27 +107,36 @@
                 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button>
-                                <Grid Margin="10,0,10,0"  Width="160">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
+                            <Button >
+                                <StackPanel Orientation="Vertical">
+                                    <Border CornerRadius="10" Height="140" Width="140">
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="{Binding Thumbnail}" 
+                                                            Stretch="UniformToFill"/>
+                                        </Border.Background>
+                                    </Border>
+                                    
+                                    <Grid Margin="5,0,5,0"  Width="140" Height="90" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
 
-                                    <Border Grid.Row="0" Width="160" Height="160" CornerRadius="10">
-                                            <Border.Background>
-                                                <ImageBrush ImageSource="{Binding Thumbnail}" Stretch="UniformToFill"/>
-                                            </Border.Background>
-                                        </Border>
-                                    <WrapPanel Grid.Row="1" Margin="0,10,0,0" Orientation="Vertical">
-                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" TextWrapping="WrapWithOverflow"/>
-                                    </WrapPanel>
-                                    <TextBlock Grid.Row="2" 
-                                               Text="{Binding Players, StringFormat='👤 {0} joueurs'}" 
-                                               VerticalAlignment="Bottom"
-                                               Margin="0,10,0,50"/>
-                                </Grid>
+                                    
+                                        <WrapPanel Grid.Row="0" 
+                                                   Margin="0,10,0,0" 
+                                                   Orientation="Vertical">
+                                            <TextBlock Text="{Binding Name}" 
+                                                       FontWeight="Bold" 
+                                                       TextWrapping="WrapWithOverflow"/>
+                                        </WrapPanel>
+                                    
+                                        <TextBlock Grid.Row="1" 
+                                                   Text="{Binding Players, StringFormat='👤 {0} joueurs'}" 
+                                                   VerticalAlignment="Bottom"
+                                                   Margin="0,0,0,10"/>
+                                    </Grid>
+                                </StackPanel>
                             </Button>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

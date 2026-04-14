@@ -39,7 +39,7 @@ namespace CS_RobloxLauncher.ViewModels
                 };
 
                 // TODO SUP
-                //if (AllGames.Count > 100) return;
+                if (AllGames.Count > 100) return;
 
                 AllGames.Add(_game);
             }
