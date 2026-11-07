@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace CS_RobloxLauncher
+namespace RobloxLauncher
 {
     /// <summary>
     /// Interaction logic for App.xaml

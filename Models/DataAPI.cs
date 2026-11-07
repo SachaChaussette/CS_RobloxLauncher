@@ -10,7 +10,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace CS_RobloxLauncher.Models
+namespace RobloxLauncher.Models
 {
     public class DataAPI
     {

@@ -1,5 +1,5 @@
-﻿using CS_RobloxLauncher.Models;
-using CS_RobloxLauncher.Views;
+﻿using RobloxLauncher.Models;
+using RobloxLauncher.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace CS_RobloxLauncher.ViewModels
+namespace RobloxLauncher.ViewModels
 {
     public class FilterItem
     {

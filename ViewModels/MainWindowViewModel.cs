@@ -1,4 +1,4 @@
-﻿using CS_RobloxLauncher.Views;
+﻿using RobloxLauncher.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
 
-namespace CS_RobloxLauncher.ViewModels
+namespace RobloxLauncher.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {

@@ -1,4 +1,4 @@
-﻿using CS_RobloxLauncher.Models;
+﻿using RobloxLauncher.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace CS_RobloxLauncher.ViewModels
+namespace RobloxLauncher.ViewModels
 {
     public class GameViewModel : ViewModelBase
     {

@@ -1,5 +1,5 @@
-﻿using CS_RobloxLauncher.Models;
-using CS_RobloxLauncher.ViewModels;
+﻿using RobloxLauncher.Models;
+using RobloxLauncher.ViewModels;
 using Newtonsoft.Json.Linq;
 using System.Collections.ObjectModel;
 using System.Net.Http;
@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CS_RobloxLauncher.Views
+namespace RobloxLauncher.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

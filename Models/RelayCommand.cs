@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace CS_RobloxLauncher
+namespace RobloxLauncher
 {
     // implémentation générique de ICommand
 

@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CS_RobloxLauncher.ViewModels
+namespace RobloxLauncher.ViewModels
 {
     public class ViewModelBase : INotifyPropertyChanged
     {

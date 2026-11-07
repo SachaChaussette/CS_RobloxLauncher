@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CS_RobloxLauncher.Models
+namespace RobloxLauncher.Models
 {
     public struct Games
     {
