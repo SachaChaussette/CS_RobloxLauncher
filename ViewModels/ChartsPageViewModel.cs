@@ -39,36 +39,74 @@ namespace RobloxLauncher.ViewModels
 
         public ChartsPageViewModel()
         {
-            LoadGamesAsync();
-
             SelectGame = new RelayCommand(OnSelectGameMethod);
             ShowErrorCommand = new RelayCommand(OnShowError);
             HideErrorCommand = new RelayCommand(OnHideError);
         }
 
-        private async Task LoadGamesAsync()
+
+        private bool _isLoading;
+
+        public bool IsLoading
         {
-            Games _response = await DataAPI.GetDataFromAPI<Games>(BaseURL.GET_ROBLOX_API);
-
-            foreach (KeyValuePair<string, object[]> _pair in _response.AllGames)
+            get => _isLoading;
+            set
             {
-                string _placeId = _pair.Key;
-                object[] _values = _pair.Value;
-
-                Game _game = new Game
-                {
-                    PlaceId     = _placeId,
-                    Name        = _values[0].ToString(),
-                    Players     = int.Parse(_values[1].ToString()),
-                    Thumbnail   = _values[2].ToString()
-                };
-
-                // TODO SUP
-                if (AllGames.Count > 500) return;
-
-                AllGames.Add(_game);
+                _isLoading = value;
+                OnPropertyChanged(nameof(IsLoading));
             }
         }
+
+        public async Task LoadGamesAsync()
+        {
+            if (IsLoading)
+                return;
+
+            IsLoading = true;
+
+            try
+            {
+                // 1. Récupération asynchrone depuis l'API
+                Games _response = await DataAPI.GetDataFromAPI<Games>(BaseURL.GET_ROBLOX_API);
+
+                if (_response.AllGames == null) return;
+
+                // 2. Transformation des données hors du thread UI
+                List<Game> _games = await Task.Run(() =>
+                {
+                    return _response.AllGames.Take(1000000).Select(_pair =>
+                        {
+                            object[] _values = _pair.Value;
+
+                            return new Game
+                            {
+                                PlaceId = _pair.Key,
+                                Name = _values[0]?.ToString() ?? "",
+                                Players = int.TryParse(_values[1]?.ToString(), out int _players) ? _players : 0,
+                                Thumbnail = _values[2]?.ToString() ?? ""
+                            };
+                        })
+                        .ToList();
+                });
+
+                // 3. Ajout progressif des jeux dans l'interface
+                AllGames.Clear();
+
+                const int batchSize = 20;
+
+                AllGames = new ObservableCollection<Game>(_games);
+                OnPropertyChanged(nameof(AllGames));
+            }
+            catch (Exception _ex)
+            {
+                MessageBox.Show($"Erreur de chargement : {_ex.Message}");
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
 
         void OnSelectGameMethod(object sender)
         {

@@ -27,15 +27,18 @@ namespace RobloxLauncher.Views
             InitializeComponent();
 
             vm = new ChartsPageViewModel();
-
             DataContext = vm;
 
             Loaded += OnLoaded;
         }
 
-        void OnLoaded(object? sender, RoutedEventArgs e)
+        private async void OnLoaded(object _sender, RoutedEventArgs _e)
         {
+            Loaded -= OnLoaded;
+
             vm.OnSelectGame += ((MainWindow)Window.GetWindow(this)).NavigateToGamePage;
+
+            await vm.LoadGamesAsync();
         }
     }
 }
